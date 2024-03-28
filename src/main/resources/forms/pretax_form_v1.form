@@ -1,0 +1,59 @@
+{
+  "components": [
+    {
+      "type": "textfield",
+      "layout": {
+        "row": "Row_1j4uj3a",
+        "columns": null
+      },
+      "id": "Field_01020m3",
+      "key": "correlation_key",
+      "appearance": {
+        "prefixAdorner": "Correlation Key"
+      }
+    },
+    {
+      "type": "textfield",
+      "layout": {
+        "row": "Row_1j4uj3a",
+        "columns": null
+      },
+      "id": "Field_05jw2aa",
+      "key": "entity_id",
+      "appearance": {
+        "prefixAdorner": "Legal Entity ID"
+      }
+    },
+    {
+      "type": "textfield",
+      "layout": {
+        "row": "Row_1j4uj3a",
+        "columns": null
+      },
+      "id": "Field_1yymzjq",
+      "key": "tax_status",
+      "appearance": {
+        "prefixAdorner": "Tax Status"
+      }
+    },
+    {
+      "label": "Tax Country",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_1cnbcyq",
+        "columns": null
+      },
+      "id": "Field_1m4gbj4",
+      "key": "tax_country"
+    }
+  ],
+  "type": "default",
+  "id": "Client_Form",
+  "executionPlatform": "Camunda Cloud",
+  "executionPlatformVersion": "8.2.0",
+  "exporter": {
+    "name": "Camunda Modeler",
+    "version": "5.13.0"
+  },
+  "schemaVersion": 9
+}

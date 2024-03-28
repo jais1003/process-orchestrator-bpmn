@@ -1,0 +1,117 @@
+{
+  "components": [
+    {
+      "type": "textfield",
+      "layout": {
+        "row": "Row_1j4uj3a",
+        "columns": null
+      },
+      "id": "Field_01020m3",
+      "key": "correlation_key",
+      "appearance": {
+        "prefixAdorner": "Correlation Key"
+      }
+    },
+    {
+      "type": "textfield",
+      "layout": {
+        "row": "Row_1j4uj3a",
+        "columns": null
+      },
+      "id": "Field_05jw2aa",
+      "key": "entity_id",
+      "appearance": {
+        "prefixAdorner": "Legal Entity ID"
+      }
+    },
+    {
+      "label": "Name",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_0frtwvc",
+        "columns": null
+      },
+      "id": "Field_0q81hrp",
+      "key": "name_1"
+    },
+    {
+      "values": [
+        {
+          "label": "Passport",
+          "value": "Passport"
+        },
+        {
+          "label": "NRIC",
+          "value": "NRIC"
+        }
+      ],
+      "label": "ID Type",
+      "type": "select",
+      "layout": {
+        "row": "Row_0frtwvc",
+        "columns": null
+      },
+      "id": "Field_17vk285",
+      "key": "name_1_idtype"
+    },
+    {
+      "label": "ID Number",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_0frtwvc",
+        "columns": null
+      },
+      "id": "Field_03v8nk4",
+      "key": "name_1_id"
+    },
+    {
+      "label": "Name",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_0n5lesv",
+        "columns": null
+      },
+      "id": "Field_16ntnle",
+      "key": "name_2"
+    },
+    {
+      "values": [
+        {
+          "label": "Passport",
+          "value": "Passport"
+        },
+        {
+          "label": "NRIC",
+          "value": "NRIC"
+        }
+      ],
+      "label": "ID Type",
+      "type": "select",
+      "layout": {
+        "row": "Row_0n5lesv",
+        "columns": null
+      },
+      "id": "Field_0ugld04",
+      "key": "name_2_idtype"
+    },
+    {
+      "label": "ID Number",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_0n5lesv",
+        "columns": null
+      },
+      "id": "Field_06vr5yn",
+      "key": "name_2_id"
+    }
+  ],
+  "type": "default",
+  "id": "Client_Form",
+  "executionPlatform": "Camunda Cloud",
+  "executionPlatformVersion": "8.2.0",
+  "exporter": {
+    "name": "Camunda Modeler",
+    "version": "5.13.0"
+  },
+  "schemaVersion": 9
+}

@@ -1,0 +1,9 @@
+department:
+  - name: Department A
+    departmentid: 1
+    employees:
+      - name: John
+        employeeid: 3
+      - name: Jane
+        employeeid: 4
+

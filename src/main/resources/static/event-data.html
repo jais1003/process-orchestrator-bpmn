@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta event_name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>D3.js Styled Tidy Tree</title>
+    <!-- Include D3.js library -->
+    <script src="https://d3js.org/d3.v6.min.js"></script>
+    <style>
+    .node circle {
+      fill: #fff;
+      stroke: steelblue;
+      stroke-width: 1.5px;
+    }
+
+    .node text {
+      font: 10px sans-serif;
+    }
+
+    .link {
+      fill: none;
+      stroke: #ccc;
+      stroke-width: 1.5px;
+    }
+  </style>
+</head>
+<body>
+<!-- Container to hold the chart -->
+
+
+    <label for="correlationKey">Correlation Key :</label>
+    <input type="text" id="correlationKey" name="correlationKey" required value="1608-2">
+    <button onClick="makeCall()">Submit</button>
+<div id="chart"></div>
+</body>
+<script>
+       function makeCall () {
+
+           let correlationKey = document.querySelector('#correlationKey').value
+           //let eventCode = document.querySelector('#eventCode').value
+
+           //document.getElementById("chart").innerHTML = "";
+
+            d3.select("svg").remove()
+
+           const apiUrl = `http://localhost:8080/instance/data/${correlationKey}`;
+
+            <!--d3.json("data.json")-->
+            d3.json(apiUrl)
+                .then(data => {
+
+              const width = 600;
+              const height = 400;
+
+              const treeData = d3.hierarchy(data);
+              const treeLayout = d3.tree().size([800, 600]);
+
+              treeLayout(treeData);
+
+              const svg = d3.select("#chart")
+                          .append("svg")
+                          .attr("width", 1500)
+                          .attr("height", 1200)
+                          .append("g")
+                          .attr("transform", "translate(100, 100)");
+
+              const links = treeData.links();
+              svg.selectAll("path.link")
+                 .data(links)
+                 .enter()
+                 .append("path")
+                 .attr("class", "link")
+                 .attr("d", d3.linkHorizontal()
+                              .x(d => d.y)
+                              .y(d => d.x));
+
+              const nodes = treeData.descendants();
+              const node = svg.selectAll("g.node")
+                             .data(nodes)
+                             .enter()
+                             .append("g")
+                             .attr("class", "node")
+                             .attr("transform", d => `translate(${d.y},${d.x})`);
+
+              node.append("circle")
+                  .attr("r", 10);
+
+              node.append("text")
+                  .attr("dy", "-2em")
+                  .attr("x", d => d.children ? -6 : 6)
+                  .attr("text-anchor", d => d.children ? "end" : "start")
+                  .text(d => d.data.event_name);
+            });
+       }
+  </script>
+</html>

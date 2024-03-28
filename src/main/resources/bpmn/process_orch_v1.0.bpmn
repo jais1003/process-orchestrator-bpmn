@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:zeebe="http://camunda.org/schema/zeebe/1.0" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_1qj6cc0" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.13.0" modeler:executionPlatform="Camunda Cloud" modeler:executionPlatformVersion="8.2.0">
+  <bpmn:process id="process_orch_v1" name="Process Orcehstrator : Onboarding" isExecutable="true">
+    <bpmn:serviceTask id="Activity_1brrof9" name="Process E1">
+      <bpmn:extensionElements>
+        <zeebe:taskDefinition type="trigger-ep-svc" retries="3" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0rwzt64</bpmn:incoming>
+      <bpmn:outgoing>Flow_0sq5ylj</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:intermediateCatchEvent id="Event_0p4kh2x" name="Consume E3">
+      <bpmn:incoming>Flow_0gopnt1</bpmn:incoming>
+      <bpmn:outgoing>Flow_0h0feti</bpmn:outgoing>
+      <bpmn:messageEventDefinition id="MessageEventDefinition_0bz31jr" messageRef="Message_2q8402e" />
+    </bpmn:intermediateCatchEvent>
+    <bpmn:startEvent id="StartEvent_1" name="Consume E1">
+      <bpmn:outgoing>Flow_0rwzt64</bpmn:outgoing>
+      <bpmn:messageEventDefinition id="MessageEventDefinition_06r3t8a" messageRef="Message_0tom4lv" />
+    </bpmn:startEvent>
+    <bpmn:sequenceFlow id="Flow_0rwzt64" sourceRef="StartEvent_1" targetRef="Activity_1brrof9" />
+    <bpmn:intermediateCatchEvent id="Event_1n99hbc" name="Consume E2">
+      <bpmn:incoming>Flow_0sq5ylj</bpmn:incoming>
+      <bpmn:outgoing>Flow_0ppxpic</bpmn:outgoing>
+      <bpmn:messageEventDefinition id="MessageEventDefinition_00jjo6p" messageRef="Message_1tfhs9h" />
+    </bpmn:intermediateCatchEvent>
+    <bpmn:sequenceFlow id="Flow_0ppxpic" sourceRef="Event_1n99hbc" targetRef="Activity_1wzyhv1" />
+    <bpmn:sequenceFlow id="Flow_0h0feti" sourceRef="Event_0p4kh2x" targetRef="Activity_1wlvr60" />
+    <bpmn:serviceTask id="Activity_1wzyhv1" name="Process E2">
+      <bpmn:extensionElements>
+        <zeebe:taskDefinition type="trigger-eh-svc" retries="3" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0ppxpic</bpmn:incoming>
+      <bpmn:outgoing>Flow_0gopnt1</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:serviceTask id="Activity_1wlvr60" name="Process E3">
+      <bpmn:extensionElements>
+        <zeebe:taskDefinition type="trigger-ev-svc" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0h0feti</bpmn:incoming>
+      <bpmn:outgoing>Flow_19s6s2z</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:sequenceFlow id="Flow_19s6s2z" sourceRef="Activity_1wlvr60" targetRef="Event_19bqyuz" />
+    <bpmn:intermediateCatchEvent id="Event_19bqyuz" name="EV Completed">
+      <bpmn:incoming>Flow_19s6s2z</bpmn:incoming>
+      <bpmn:outgoing>Flow_111orwf</bpmn:outgoing>
+      <bpmn:messageEventDefinition id="MessageEventDefinition_1wf1okx" messageRef="Message_1tdui65" />
+    </bpmn:intermediateCatchEvent>
+    <bpmn:endEvent id="Event_1pz8dzz" name="End">
+      <bpmn:incoming>Flow_111orwf</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_111orwf" sourceRef="Event_19bqyuz" targetRef="Event_1pz8dzz" />
+    <bpmn:sequenceFlow id="Flow_0sq5ylj" sourceRef="Activity_1brrof9" targetRef="Event_1n99hbc" />
+    <bpmn:sequenceFlow id="Flow_0gopnt1" sourceRef="Activity_1wzyhv1" targetRef="Event_0p4kh2x" />
+  </bpmn:process>
+  <bpmn:message id="Message_1s5vck5" name="EPComplete">
+    <bpmn:extensionElements>
+      <zeebe:subscription correlationKey="=request_id" />
+    </bpmn:extensionElements>
+  </bpmn:message>
+  <bpmn:message id="Message_1tfhs9h" name="ep-completed">
+    <bpmn:extensionElements>
+      <zeebe:subscription correlationKey="=correlation_key" />
+    </bpmn:extensionElements>
+  </bpmn:message>
+  <bpmn:message id="Message_15j75pn" name="trigger-eh">
+    <bpmn:extensionElements>
+      <zeebe:subscription correlationKey="=correlation_key" />
+    </bpmn:extensionElements>
+  </bpmn:message>
+  <bpmn:message id="Message_0tom4lv" name="trigger-onboarding" />
+  <bpmn:message id="Message_2q8402e" name="eh-completed">
+    <bpmn:extensionElements>
+      <zeebe:subscription correlationKey="=correlation_key" />
+    </bpmn:extensionElements>
+  </bpmn:message>
+  <bpmn:message id="Message_1tdui65" name="ev-completed">
+    <bpmn:extensionElements>
+      <zeebe:subscription correlationKey="=correlation_key" />
+    </bpmn:extensionElements>
+  </bpmn:message>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="process_orch_v1">
+      <bpmndi:BPMNShape id="Event_1jx2zx6_di" bpmnElement="StartEvent_1">
+        <dc:Bounds x="179" y="99" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="165" y="142" width="64" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1pz8dzz_di" bpmnElement="Event_1pz8dzz">
+        <dc:Bounds x="1102" y="99" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1110" y="142" width="20" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_04es3aj_di" bpmnElement="Activity_1brrof9">
+        <dc:Bounds x="280" y="77" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1qy04v1_di" bpmnElement="Event_1n99hbc">
+        <dc:Bounds x="442" y="99" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="428" y="142" width="64" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0iy4u3e_di" bpmnElement="Activity_1wzyhv1">
+        <dc:Bounds x="540" y="77" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0ncqjgu_di" bpmnElement="Event_0p4kh2x">
+        <dc:Bounds x="712" y="99" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="698" y="142" width="64" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_14qwx3o_di" bpmnElement="Activity_1wlvr60">
+        <dc:Bounds x="820" y="77" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1iix2kh_di" bpmnElement="Event_19bqyuz">
+        <dc:Bounds x="1002" y="99" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="984" y="145" width="71" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_0rwzt64_di" bpmnElement="Flow_0rwzt64">
+        <di:waypoint x="215" y="117" />
+        <di:waypoint x="280" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0ppxpic_di" bpmnElement="Flow_0ppxpic">
+        <di:waypoint x="478" y="117" />
+        <di:waypoint x="540" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0h0feti_di" bpmnElement="Flow_0h0feti">
+        <di:waypoint x="748" y="117" />
+        <di:waypoint x="820" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_19s6s2z_di" bpmnElement="Flow_19s6s2z">
+        <di:waypoint x="920" y="117" />
+        <di:waypoint x="1002" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_111orwf_di" bpmnElement="Flow_111orwf">
+        <di:waypoint x="1038" y="117" />
+        <di:waypoint x="1102" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0sq5ylj_di" bpmnElement="Flow_0sq5ylj">
+        <di:waypoint x="380" y="117" />
+        <di:waypoint x="442" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0gopnt1_di" bpmnElement="Flow_0gopnt1">
+        <di:waypoint x="640" y="117" />
+        <di:waypoint x="712" y="117" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

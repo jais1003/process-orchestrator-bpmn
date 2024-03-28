@@ -1,0 +1,63 @@
+{
+  "components": [
+    {
+      "label": "Correlation Key",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_1j4uj3a",
+        "columns": null
+      },
+      "id": "Field_01020m3",
+      "key": "correlation_key"
+    },
+    {
+      "label": "Client Name",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_1cnbcyq",
+        "columns": null
+      },
+      "id": "Field_1m4gbj4",
+      "key": "client_name"
+    },
+    {
+      "label": "Address",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_0sz7l8q",
+        "columns": null
+      },
+      "id": "Field_06i76f6",
+      "key": "address"
+    },
+    {
+      "label": "Status",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_1341rr0",
+        "columns": null
+      },
+      "id": "Field_1yymzjq",
+      "key": "status"
+    },
+    {
+      "label": "Process ID",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_02kpbml",
+        "columns": null
+      },
+      "id": "Field_1qs2nhq",
+      "key": "process_id"
+    }
+  ],
+  "type": "default",
+  "id": "Client_Form",
+  "executionPlatform": "Camunda Cloud",
+  "executionPlatformVersion": "8.2.0",
+  "exporter": {
+    "name": "Camunda Modeler",
+    "version": "5.13.0"
+  },
+  "schemaVersion": 9
+}

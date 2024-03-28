@@ -1,0 +1,79 @@
+{
+  "components": [
+    {
+      "type": "textfield",
+      "layout": {
+        "row": "Row_1j4uj3a",
+        "columns": null
+      },
+      "id": "Field_01020m3",
+      "key": "correlation_key",
+      "appearance": {
+        "prefixAdorner": "Correlation Key"
+      }
+    },
+    {
+      "type": "textfield",
+      "layout": {
+        "row": "Row_1j4uj3a",
+        "columns": null
+      },
+      "id": "Field_08ku4y1",
+      "key": "entity_id",
+      "appearance": {
+        "prefixAdorner": "Legal Entity ID"
+      }
+    },
+    {
+      "type": "textfield",
+      "layout": {
+        "row": "Row_1j4uj3a",
+        "columns": null
+      },
+      "id": "Field_0mznunt",
+      "key": "entity_status",
+      "appearance": {
+        "prefixAdorner": "Entity Status"
+      }
+    },
+    {
+      "text": "Entity Hierarchy",
+      "label": "Text view",
+      "type": "text",
+      "layout": {
+        "row": "Row_0h7h9ni",
+        "columns": null
+      },
+      "id": "Field_1fbcg9b"
+    },
+    {
+      "label": "Name",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_0frtwvc",
+        "columns": null
+      },
+      "id": "Field_0q81hrp",
+      "key": "name_1"
+    },
+    {
+      "label": "Name",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_1h6eogh",
+        "columns": null
+      },
+      "id": "Field_0hsa0x0",
+      "key": "name_2"
+    }
+  ],
+  "type": "default",
+  "id": "Client_Form",
+  "executionPlatform": "Camunda Cloud",
+  "executionPlatformVersion": "8.2.0",
+  "exporter": {
+    "name": "Camunda Modeler",
+    "version": "5.13.0"
+  },
+  "schemaVersion": 9
+}

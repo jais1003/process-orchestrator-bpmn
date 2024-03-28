@@ -1,0 +1,56 @@
+{
+  "event_instance_id": "a88e986a-a06f-46f0-8059-89e85829b179",
+  "event_name": "Prospect Completed",
+  "children": [
+    {
+      "event_instance_id": "af18b060-0787-45f5-988b-9c3638fbbe44",
+      "event_name": "Entity Validated",
+      "children": [
+        {
+          "event_instance_id": "e034d8bc-333b-4e14-9581-a66b23024b71",
+          "event_name": "Pre-Tax Completed",
+          "children": [
+            {
+              "event_instance_id": "165021e4-3a7c-4879-a7ec-910bbe44407c",
+              "event_name": "CRS Completed",
+              "children": []
+            },
+            {
+              "event_instance_id": "7df28529-693d-4363-a651-c7c10c419dfe",
+              "event_name": "FATCA Approved",
+              "children": []
+            }
+          ]
+        },
+        {
+          "event_instance_id": "932e43dc-68aa-4be9-9e22-a809b66e6817",
+          "event_name": "KYC Profile Created",
+          "children": [
+            {
+              "event_instance_id": "3c71b854-4b80-41a4-87a3-ad21451efe3d",
+              "event_name": "Unwrapping Completed",
+              "children": [
+                {
+                  "event_instance_id": "0773e85b-1eba-462e-826a-25279eb38ca7",
+                  "event_name": "ID&V Completed",
+                  "children": []
+                },
+                {
+                  "event_instance_id": "49af8288-d2e3-437d-bad1-22a22b014780",
+                  "event_name": "Screening Completed",
+                  "children": [
+                    {
+                      "event_instance_id": "8c94bb0d-eaef-4bce-bbe3-fa47063b4c7d",
+                      "event_name": "KYC Approved",
+                      "children": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,89 @@
+{
+  "components": [
+    {
+      "text": "This Screen is from V2 of Entity Profile Service",
+      "label": "Text view",
+      "type": "text",
+      "layout": {
+        "row": "Row_15pj5aq",
+        "columns": null
+      },
+      "id": "Field_0pt890n"
+    },
+    {
+      "type": "textfield",
+      "layout": {
+        "row": "Row_0sh4odj",
+        "columns": null
+      },
+      "id": "Field_01020m3",
+      "key": "correlation_key",
+      "appearance": {
+        "prefixAdorner": "Correlation Key"
+      }
+    },
+    {
+      "type": "textfield",
+      "layout": {
+        "row": "Row_0sh4odj",
+        "columns": null
+      },
+      "id": "Field_1yymzjq",
+      "key": "entity_id",
+      "appearance": {
+        "prefixAdorner": "Legal Entity ID"
+      }
+    },
+    {
+      "type": "textfield",
+      "layout": {
+        "row": "Row_0sh4odj",
+        "columns": null
+      },
+      "id": "Field_1yjivax",
+      "key": "entity_status",
+      "appearance": {
+        "prefixAdorner": "Entity Status"
+      }
+    },
+    {
+      "label": "Client Name",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_1cnbcyq",
+        "columns": null
+      },
+      "id": "Field_1m4gbj4",
+      "key": "entity_name"
+    },
+    {
+      "label": "Entity Type",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_1cnbcyq",
+        "columns": null
+      },
+      "id": "Field_1k2csp4",
+      "key": "entity_type"
+    },
+    {
+      "label": "Address",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_0sz7l8q",
+        "columns": null
+      },
+      "id": "Field_06i76f6",
+      "key": "address"
+    }
+  ],
+  "type": "default",
+  "id": "Client_Form",
+  "executionPlatform": "Camunda Cloud",
+  "executionPlatformVersion": "8.2.0",
+  "exporter": {
+    "name": "Camunda Modeler",
+    "version": "5.13.0"
+  },
+  "schemaVersion": 9
+}

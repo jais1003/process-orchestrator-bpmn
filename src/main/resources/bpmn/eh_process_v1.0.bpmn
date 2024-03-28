@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:zeebe="http://camunda.org/schema/zeebe/1.0" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_0xk6zlo" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.13.0" modeler:executionPlatform="Camunda Cloud" modeler:executionPlatformVersion="8.2.0">
+  <bpmn:process id="eh_process_v1" name="Entity Hierarchy" isExecutable="true">
+    <bpmn:extensionElements>
+      <zeebe:userTaskForm id="userTaskForm_3k2lqrn">{
+  "components": [
+    {
+      "type": "textfield",
+      "layout": {
+        "row": "Row_1j4uj3a",
+        "columns": null
+      },
+      "id": "Field_01020m3",
+      "key": "correlation_key",
+      "appearance": {
+        "prefixAdorner": "Correlation Key"
+      }
+    },
+    {
+      "type": "textfield",
+      "layout": {
+        "row": "Row_1j4uj3a",
+        "columns": null
+      },
+      "id": "Field_08ku4y1",
+      "key": "entity_id",
+      "appearance": {
+        "prefixAdorner": "Legal Entity ID"
+      }
+    },
+    {
+      "type": "textfield",
+      "layout": {
+        "row": "Row_1j4uj3a",
+        "columns": null
+      },
+      "id": "Field_0mznunt",
+      "key": "entity_status",
+      "appearance": {
+        "prefixAdorner": "Entity Status"
+      }
+    },
+    {
+      "text": "Entity Hierarchy",
+      "label": "Text view",
+      "type": "text",
+      "layout": {
+        "row": "Row_0h7h9ni",
+        "columns": null
+      },
+      "id": "Field_1fbcg9b"
+    },
+    {
+      "label": "Name",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_0frtwvc",
+        "columns": null
+      },
+      "id": "Field_0q81hrp",
+      "key": "name_1"
+    },
+    {
+      "label": "Name",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_1h6eogh",
+        "columns": null
+      },
+      "id": "Field_0hsa0x0",
+      "key": "name_2"
+    }
+  ],
+  "type": "default",
+  "id": "Client_Form",
+  "executionPlatform": "Camunda Cloud",
+  "executionPlatformVersion": "8.2.0",
+  "exporter": {
+    "name": "Camunda Modeler",
+    "version": "5.13.0"
+  },
+  "schemaVersion": 9
+}</zeebe:userTaskForm>
+    </bpmn:extensionElements>
+    <bpmn:sequenceFlow id="Flow_0bdl5qg" sourceRef="StartEvent_1" targetRef="Activity_0blvd0c" />
+    <bpmn:userTask id="Activity_0blvd0c" name="EH Maker">
+      <bpmn:extensionElements>
+        <zeebe:formDefinition formKey="camunda-forms:bpmn:userTaskForm_3k2lqrn" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0bdl5qg</bpmn:incoming>
+      <bpmn:outgoing>Flow_1n603p1</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:endEvent id="Event_038fqmu" name="End">
+      <bpmn:incoming>Flow_1e47ydb</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_1e47ydb" sourceRef="Activity_03jwpzw" targetRef="Event_038fqmu" />
+    <bpmn:serviceTask id="Activity_03jwpzw" name="Join back to Orcehstrator">
+      <bpmn:extensionElements>
+        <zeebe:taskDefinition type="publish-event" retries="3" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1n603p1</bpmn:incoming>
+      <bpmn:outgoing>Flow_1e47ydb</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:sequenceFlow id="Flow_1n603p1" sourceRef="Activity_0blvd0c" targetRef="Activity_03jwpzw" />
+    <bpmn:startEvent id="StartEvent_1" name="Start">
+      <bpmn:outgoing>Flow_0bdl5qg</bpmn:outgoing>
+      <bpmn:messageEventDefinition id="MessageEventDefinition_0x4gc7e" messageRef="Message_2s9b1h1" />
+    </bpmn:startEvent>
+  </bpmn:process>
+  <bpmn:message id="Message_2s9b1h1" name="trigger-entityhierarchy" />
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="eh_process_v1">
+      <bpmndi:BPMNShape id="Activity_1vto8uu_di" bpmnElement="Activity_0blvd0c">
+        <dc:Bounds x="270" y="77" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_038fqmu_di" bpmnElement="Event_038fqmu">
+        <dc:Bounds x="612" y="99" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="620" y="75" width="20" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_17fefn7_di" bpmnElement="Activity_03jwpzw">
+        <dc:Bounds x="440" y="77" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1tusdpq_di" bpmnElement="StartEvent_1">
+        <dc:Bounds x="179" y="99" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="185" y="142" width="24" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_0bdl5qg_di" bpmnElement="Flow_0bdl5qg">
+        <di:waypoint x="215" y="117" />
+        <di:waypoint x="270" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1e47ydb_di" bpmnElement="Flow_1e47ydb">
+        <di:waypoint x="540" y="117" />
+        <di:waypoint x="612" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1n603p1_di" bpmnElement="Flow_1n603p1">
+        <di:waypoint x="370" y="117" />
+        <di:waypoint x="440" y="117" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:zeebe="http://camunda.org/schema/zeebe/1.0" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_0rxfro6" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.13.0" modeler:executionPlatform="Camunda Cloud" modeler:executionPlatformVersion="8.2.0">
+  <bpmn:process id="ep_process_v1" name="Entity Profile" isExecutable="true">
+    <bpmn:extensionElements>
+      <zeebe:userTaskForm id="userTaskForm_1h7nqd4">{
+  "components": [
+    {
+      "type": "textfield",
+      "layout": {
+        "row": "Row_1j4uj3a",
+        "columns": null
+      },
+      "id": "Field_01020m3",
+      "key": "correlation_key",
+      "appearance": {
+        "prefixAdorner": "Correlation Key"
+      }
+    },
+    {
+      "type": "textfield",
+      "layout": {
+        "row": "Row_1j4uj3a",
+        "columns": null
+      },
+      "id": "Field_1yymzjq",
+      "key": "entity_id",
+      "appearance": {
+        "prefixAdorner": "Legal Entity ID"
+      }
+    },
+    {
+      "type": "textfield",
+      "layout": {
+        "row": "Row_1j4uj3a",
+        "columns": null
+      },
+      "id": "Field_1yjivax",
+      "key": "entity_status",
+      "appearance": {
+        "prefixAdorner": "Entity Status"
+      }
+    },
+    {
+      "label": "Client Name",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_1cnbcyq",
+        "columns": null
+      },
+      "id": "Field_1m4gbj4",
+      "key": "entity_name"
+    },
+    {
+      "label": "Entity Type",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_1cnbcyq",
+        "columns": null
+      },
+      "id": "Field_1k2csp4",
+      "key": "entity_type"
+    },
+    {
+      "label": "Address",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_0sz7l8q",
+        "columns": null
+      },
+      "id": "Field_06i76f6",
+      "key": "address"
+    }
+  ],
+  "type": "default",
+  "id": "Client_Form",
+  "executionPlatform": "Camunda Cloud",
+  "executionPlatformVersion": "8.2.0",
+  "exporter": {
+    "name": "Camunda Modeler",
+    "version": "5.13.0"
+  },
+  "schemaVersion": 9
+}</zeebe:userTaskForm>
+    </bpmn:extensionElements>
+    <bpmn:sequenceFlow id="Flow_0ngopk6" sourceRef="StartEvent_1" targetRef="Activity_1uc1060" />
+    <bpmn:userTask id="Activity_1uc1060" name="EP Maker">
+      <bpmn:extensionElements>
+        <zeebe:formDefinition formKey="camunda-forms:bpmn:userTaskForm_1h7nqd4" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0ngopk6</bpmn:incoming>
+      <bpmn:outgoing>Flow_0ejvj7c</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:serviceTask id="Activity_03jwpzw" name="Publish E2">
+      <bpmn:extensionElements>
+        <zeebe:taskDefinition type="publish-event" retries="3" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0ejvj7c</bpmn:incoming>
+      <bpmn:outgoing>Flow_0fxfbzx</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:endEvent id="Event_0hvw0rv" name="End">
+      <bpmn:incoming>Flow_0fxfbzx</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_0fxfbzx" sourceRef="Activity_03jwpzw" targetRef="Event_0hvw0rv" />
+    <bpmn:startEvent id="StartEvent_1" name="Start">
+      <bpmn:outgoing>Flow_0ngopk6</bpmn:outgoing>
+      <bpmn:messageEventDefinition id="MessageEventDefinition_11omra4" messageRef="Message_10m8393" />
+    </bpmn:startEvent>
+    <bpmn:sequenceFlow id="Flow_0ejvj7c" sourceRef="Activity_1uc1060" targetRef="Activity_03jwpzw" />
+  </bpmn:process>
+  <bpmn:message id="Message_15j75pn" name="trigger-eh">
+    <bpmn:extensionElements>
+      <zeebe:subscription correlationKey="=correlation_key" />
+    </bpmn:extensionElements>
+  </bpmn:message>
+  <bpmn:message id="Message_10m8393" name="trigger-entityprofile" />
+  <bpmn:message id="Message_0q8mu4a" name="E15">
+    <bpmn:extensionElements>
+      <zeebe:subscription correlationKey="=correlation_key" />
+    </bpmn:extensionElements>
+  </bpmn:message>
+  <bpmn:message id="Message_07m0jh9" name="E16">
+    <bpmn:extensionElements>
+      <zeebe:subscription correlationKey="=correlation_key" />
+    </bpmn:extensionElements>
+  </bpmn:message>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="ep_process_v1">
+      <bpmndi:BPMNShape id="Activity_00iup9j_di" bpmnElement="Activity_1uc1060">
+        <dc:Bounds x="270" y="77" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1h2ym36_di" bpmnElement="StartEvent_1">
+        <dc:Bounds x="179" y="99" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="185" y="142" width="24" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_17fefn7_di" bpmnElement="Activity_03jwpzw">
+        <dc:Bounds x="460" y="77" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0hvw0rv_di" bpmnElement="Event_0hvw0rv">
+        <dc:Bounds x="642" y="99" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="650" y="142" width="20" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_0ngopk6_di" bpmnElement="Flow_0ngopk6">
+        <di:waypoint x="215" y="117" />
+        <di:waypoint x="270" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0fxfbzx_di" bpmnElement="Flow_0fxfbzx">
+        <di:waypoint x="560" y="117" />
+        <di:waypoint x="642" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0ejvj7c_di" bpmnElement="Flow_0ejvj7c">
+        <di:waypoint x="370" y="117" />
+        <di:waypoint x="460" y="117" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

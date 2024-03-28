@@ -1,0 +1,44 @@
+server:
+  port: 8080
+
+logging:
+  level:
+    root: INFO
+  org:
+    springframework: INFO
+
+zeebe:
+  client:
+    broker:
+      gateway-address: 127.0.0.1:26500
+    job:
+      timeout: 10000
+    security:
+      plaintext: true
+
+spring:
+  application:
+    name: process-orchestrator
+  datasource:
+    url: jdbc:h2:file:/Users/jaisonjose/poc-projects/data-h2/process-orch-db
+    username: sa
+    password: password
+    driverClassName: org.h2.Driver
+  jpa:
+    spring.jpa.database-platform: org.hibernate.dialect.H2Dialect
+    defer-datasource-initialization: true
+    generate-ddl: true
+    hibernate:
+      ddl-auto: update
+  h2:
+    console:
+      enabled: true
+  sql:
+    init:
+      mode: always
+
+orchestrator:
+  event:
+    generator-endpoint: http://127.0.0.1:8080/event/generate
+
+
